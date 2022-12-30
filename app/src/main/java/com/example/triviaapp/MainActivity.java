@@ -9,6 +9,9 @@ import com.android.volley.Request;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.example.triviaapp.controller.AppController;
 import com.example.triviaapp.data.Repository;
+import com.example.triviaapp.model.Question;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        new Repository().getQuestions();
+        List<Question> questions = new Repository().getQuestions();
+
     }
 }
