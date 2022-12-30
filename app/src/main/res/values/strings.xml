@@ -5,4 +5,8 @@
     <string name="true_button">True</string>
     <string name="false_button">False</string>
     <string name="next_button">Next</string>
+    <string name="placeholder">Hello there world, here we\'re going to add text that is gonna show to world how questions UI looks like</string>
+    <string name="question_out_of_text">\"Question: \"</string>
+    <string name="correct_answer" >Correct</string>
+    <string name="incorrect_answer" >Incorrect</string>
 </resources>
