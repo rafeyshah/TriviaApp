@@ -5,6 +5,8 @@ import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
 import com.example.triviaapp.data.Repository;
@@ -34,17 +36,18 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.buttonNext.setOnClickListener(v -> {
+            currentQuestionIndex +=1 % questionList.size();
             updateQuestions();
         });
 
         binding.buttonTrue.setOnClickListener(v -> {
             checkAnswer(true);
-//            updateQuestions();
+            updateQuestions();
         });
 
         binding.buttonFalse.setOnClickListener(v -> {
             checkAnswer(false);
-//            updateQuestions();
+            updateQuestions();
         });
 
     }
@@ -56,17 +59,20 @@ public class MainActivity extends AppCompatActivity {
             snackMessageId = R.string.correct_answer;
         }else{
             snackMessageId = R.string.incorrect_answer;
+            shakeAnimation();
         }
 //        Snackbar.make(binding.cardView, snackMessageId, Snackbar.LENGTH_SHORT).show();
         Toast.makeText(getApplicationContext(),snackMessageId, Toast.LENGTH_SHORT).show();
     }
 
     private void updateQuestions(){
-        currentQuestionIndex +=1 % questionList.size();
         String question = questionList.get(currentQuestionIndex).getAnswer();
         binding.questionTextview.setText(question);
         binding.textViewOutOf.setText(MessageFormat.format("Question: {0}/{1}", currentQuestionIndex+1, questionList.size()));
+    }
 
-
+    private void shakeAnimation(){
+        Animation shake = AnimationUtils.loadAnimation(MainActivity.this, R.anim.shake_animation);
+        binding.cardView.setAnimation(shake);
     }
 }
